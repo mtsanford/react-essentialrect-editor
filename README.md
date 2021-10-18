@@ -8,19 +8,24 @@ EssentialRectEditor is a React component that allows selection of an essential r
 
 [Editor demo](https://tool.essentialrect.com)
 
-[Learn more about react-image-crop here](https://github.com/DominicTobias/react-image-crop)
-
 ## Table of Contents
 
 1. [What is essentiaRect?](#about)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [Example](#example)
-5. [Props](#props)
+2. [Dependencies](#dependencies)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Example](#example)
+6. [Props](#props)
 
 ## What is essentialRect?
 
 EssentialRect is a standard for responsive image display. Rather than cropping an image to a rectangle of a certain aspect ratio, a rectangle (its essentialRect) is defined for an image as "essential". This allows the image to be shown in a wide range of aspect ratios without cropping or leterboxing. The essentialRect will be guaranteed to be displayed, while the rest of the image will be considered "nice to have", and will be used to fill the remaining client area. The essentialRect will be as centered as possible while still avoiding letterboxing.
+
+## Dependencies
+
+[react-essentialrect](https://www.npmjs.com/package/react-essentialrect)
+
+[react-image-crop](https://github.com/DominicTobias/react-image-crop)
 
 ## Installation
 
@@ -34,16 +39,15 @@ There is no default export.
 
 ```js
 import { EssentialRectEditor } from "react-essentialrect-editor";
-import "react-essentialrect/dist/essentialrect-editor.css";
+import "react-essentialrect-editor/dist/essentialrect-editor.css";
 ```
 
 ## Example
 
 ```js
-import { EssentialRectImg, EssentialRectEditor } from "react-essentialrect/editor";
+import { EssentialRectEditor } from "react-essentialrect/editor";
 import "react-image-crop/dist/ReactCrop.css";
-import "react-essentialrect/dist/css/essentialrect-img.css";
-import "react-essentialrect/dist/css/essentialrect-editor.css";
+import "react-essentialrect-editor/dist/css/essentialrect-editor.css";
 
 const imageHeight = 300;
 const aspectRatio = 1.91;
@@ -74,9 +78,6 @@ function App(imageUrl) {
           essentialRect={essentialRect}
           onEssentialRectChange={onEssentialRectChange}
         />
-      </div>
-      <div className="imageWrapper" style={editorStyles}>
-        <EssentialRectImg src={imageUrl} essentialRect={essentialRect} />
       </div>
     </div>
   );

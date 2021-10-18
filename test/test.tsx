@@ -1,10 +1,11 @@
 import { useState, CSSProperties } from 'react';
 import ReactDOM from 'react-dom'; 
-import { EssentialRectEditor, EssentialRectImg, Rect } from '../src/editor';
+import { EssentialRectImg, Rect } from 'react-essentialrect';
+import { EssentialRectEditor  } from '../src/index';
 
-import '../src/essentialrect-img.css';
-import '../src/essentialrect-editor.css';
+import 'react-essentialrect/essentialrect-img.css';
 import 'react-image-crop/dist/ReactCrop.css';
+import '../src/essentialrect-editor.css';
 
 // total width + height
 const T = 160 * 160;
