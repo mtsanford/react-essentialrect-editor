@@ -36,6 +36,11 @@ module.exports = [
         commonjs: 'react-image-crop',
         commonjs2: 'react-image-crop',
         amd: 'react-image-crop',
+      },
+      'react-essentialrect': {
+        commonjs: 'react-essentialrect',
+        commonjs2: 'react-essentialrect',
+        amd: 'react-essentialrect',
       }
     },
     target: 'web',

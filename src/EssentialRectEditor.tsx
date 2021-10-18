@@ -7,9 +7,7 @@ import React, {
 
 import ReactCrop, { Crop } from "react-image-crop";
 
-import { Rect, rectEmpty, rectClip, rectScale } from "./Rect";
-
-import { useClientRect } from "./use-client-rect";
+import { useClientRect, Rect, rectEmpty, rectClip, rectScale } from "react-essentialrect";
 
 const cropStyles: CSSProperties = { width: "100%" };
 

@@ -13,7 +13,7 @@
     "prepublishOnly": "npm test && npm run lint",
     "postversion": "git push && git push --tags",
     "version": "git add -A src",
-    "copy": "copyfiles --flat ./src/*.css ./dist/css"
+    "copy": "copyfiles --flat ./src/*.css ./dist"
   },
   "keywords": [
     "essentialrect",
@@ -39,6 +39,7 @@
     "prettier": "^2.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-essentialrect": "^1.2.1",
     "react-image-crop": "^9.0.4",
     "style-loader": "^3.3.0",
     "ts-jest": "^27.0.5",
@@ -57,8 +58,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mtsanford/react-essentialretc.git"
-  },
-  "dependencies": {
-    "react-essentialrect": "^1.2.1"
   }
 }
