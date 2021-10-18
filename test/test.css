@@ -1,0 +1,27 @@
+html,
+body,
+div {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  margin: 10px;
+}
+
+.imageWrapper {
+  box-sizing: content-box;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 5px solid black;
+  border-radius: 5px;
+  display: inline-block;
+  background-color: red;
+}
+
+.editorWrapper {
+  width: 600px;
+  height: 400px;
+  margin-bottom: 20px;
+}
+
