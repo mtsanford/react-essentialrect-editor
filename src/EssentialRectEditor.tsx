@@ -28,6 +28,10 @@ export interface EssentialRectEditorProps {
   /* callbacks for when the image is loaded or fails to load */
   onImageError?: React.DOMAttributes<HTMLImageElement>["onError"];
   onImageLoaded?: (image: HTMLImageElement) => void;
+
+  /* add custom styling */
+  className?: string;
+  style?: CSSProperties;
 }
 
 export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
@@ -38,6 +42,8 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
   maxAspectRatio,
   onImageError,
   onImageLoaded,
+  className,
+  style
 }): ReactElement => {
   const [imageRect, setImageRect] = useState<Rect | undefined>();
   const [imageViewerRef, clientRect] = useClientRect();
@@ -47,6 +53,8 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
   let essentialRectClient: Rect;
   let maxCropWidth: number | undefined;
   let maxCropHeight: number | undefined;
+  const classes = `EssentialRectEditor ${className}`;
+  const styles: CSSProperties = style || {};
 
   let cropScale = 0;
   let cropTop = 0;
@@ -142,7 +150,7 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
   );
 
   return (
-    <div className="EssentialRectEditor">
+    <div className={classes} style={styles}>
       <div className="EssentialRectEditorInner" ref={imageViewerRef}>
         {drawCrop && (
           <div style={cropWrapperStyles}>

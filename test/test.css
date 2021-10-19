@@ -9,7 +9,7 @@ div {
   margin: 10px;
 }
 
-.imageWrapper {
+.image {
   box-sizing: content-box;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -19,7 +19,7 @@ div {
   background-color: red;
 }
 
-.editorWrapper {
+.EssentialRectEditor.editor {
   width: 600px;
   height: 400px;
   margin-bottom: 20px;
