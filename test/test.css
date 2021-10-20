@@ -19,9 +19,8 @@ div {
   background-color: red;
 }
 
-.EssentialRectEditor.editor {
+.editor {
   width: 600px;
-  height: 400px;
   margin-bottom: 20px;
 }
 

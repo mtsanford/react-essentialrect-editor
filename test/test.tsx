@@ -5,7 +5,6 @@ import { EssentialRectEditor } from "../src/index";
 
 import "react-essentialrect/dist/essentialrect-img.css";
 import "react-image-crop/dist/ReactCrop.css";
-import "../src/essentialrect-editor.css";
 
 // total width + height
 const T = 160 * 160;

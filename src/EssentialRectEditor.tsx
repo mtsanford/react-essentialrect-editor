@@ -7,9 +7,13 @@ import React, {
 
 import ReactCrop, { Crop } from "react-image-crop";
 
-import { useClientRect, Rect, rectEmpty, rectClip, rectScale } from "react-essentialrect";
-
-const cropStyles: CSSProperties = { width: "100%" };
+import {
+  useClientRect,
+  Rect,
+  rectEmpty,
+  rectClip,
+  rectScale,
+} from "react-essentialrect";
 
 export interface EssentialRectEditorProps {
   /* URL of the image */
@@ -43,43 +47,24 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
   onImageError,
   onImageLoaded,
   className,
-  style
+  style,
 }): ReactElement => {
   const [imageRect, setImageRect] = useState<Rect | undefined>();
-  const [imageViewerRef, clientRect] = useClientRect();
+  const [editorRef, clientRect] = useClientRect();
 
   let crop: Partial<Crop> = {};
-  let cropWrapperStyles: CSSProperties = {};
   let essentialRectClient: Rect;
   let maxCropWidth: number | undefined;
   let maxCropHeight: number | undefined;
   const classes = `EssentialRectEditor ${className || ""}`;
   const styles: CSSProperties = style || {};
 
+  // ratio of ReactCrop element size to image size
   let cropScale = 0;
-  let cropTop = 0;
-  let cropLeft = 0;
 
-  // we can determine where image should be placed until we have clientrect
-  // and an image rect.  We can't draw the crop until we have an essentialRect.
-  const drawCrop = imageUrl && !rectEmpty(clientRect);
-
-  if (drawCrop && imageRect) {
-    cropScale = Math.min(
-      clientRect.width / imageRect.width,
-      clientRect.height / imageRect.height
-    );
-    cropTop = (clientRect.height - imageRect.height * cropScale) / 2;
-    cropLeft = (clientRect.width - imageRect.width * cropScale) / 2;
-
-    cropWrapperStyles = {
-      top: cropTop,
-      left: cropLeft,
-      width: imageRect.width * cropScale,
-      height: imageRect.height * cropScale,
-      position: "absolute",
-    };
-
+  if (!rectEmpty(clientRect) && imageRect) {
+    cropScale = clientRect.width / imageRect.width;
+    
     if (essentialRect) {
       essentialRectClient = rectScale(essentialRect, cropScale);
 
@@ -108,7 +93,7 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
   }
 
   const onCropChange = (newCrop: Crop) => {
-    if (imageRect && cropScale) {
+    if (imageRect && cropScale && onEssentialRectChange) {
       const newEssentialRect = rectClip(
         rectScale(
           {
@@ -123,7 +108,7 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
       );
 
       if (!rectEmpty(newEssentialRect)) {
-        if (onEssentialRectChange) onEssentialRectChange(newEssentialRect);
+        onEssentialRectChange(newEssentialRect);
       }
     }
   };
@@ -142,7 +127,7 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
       if (onImageLoaded) onImageLoaded(element);
 
       // let ReactCrop know that it does not need to initialize the crop.  We
-      // set that through the essentialRect prop, and expect our parent 
+      // set that through the essentialRect prop, and expect our parent
       // to supply it!
       return false;
     },
@@ -150,26 +135,18 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
   );
 
   return (
-    <div className={classes} style={styles}>
-      <div className="EssentialRectEditorInner" ref={imageViewerRef}>
-        {drawCrop && (
-          <div style={cropWrapperStyles}>
-            <ReactCrop
-              src={imageUrl}
-              onImageLoaded={imageLoaded}
-              onImageError={onImageError}
-              crop={crop}
-              onChange={onCropChange}
-              style={cropStyles}
-              imageStyle={cropStyles}
-              minWidth={32}
-              minHeight={32}
-              maxWidth={maxCropWidth}
-              maxHeight={maxCropHeight}
-            />
-          </div>
-        )}
-      </div>
+    <div className={classes} style={styles} ref={editorRef}>
+      <ReactCrop
+        src={imageUrl}
+        onImageLoaded={imageLoaded}
+        onImageError={onImageError}
+        crop={crop}
+        onChange={onCropChange}
+        minWidth={32}
+        minHeight={32}
+        maxWidth={maxCropWidth}
+        maxHeight={maxCropHeight}
+      />
     </div>
   );
 };
