@@ -1,6 +1,6 @@
 {
   "name": "react-essentialrect-editor",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "React components for implementing essentialRect image display and editing",
   "homepage": "https://github.com/mtsanford/react-essentialrect-editor",
   "main": "./dist/EssentialRectEditor.js",
