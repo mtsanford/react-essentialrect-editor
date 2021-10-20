@@ -13,7 +13,7 @@ const cropStyles: CSSProperties = { width: "100%" };
 
 export interface EssentialRectEditorProps {
   /* URL of the image */
-  imageUrl?: string;
+  imageUrl: string;
 
   /* essentialRect of the image */
   essentialRect?: Rect;
@@ -53,7 +53,7 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
   let essentialRectClient: Rect;
   let maxCropWidth: number | undefined;
   let maxCropHeight: number | undefined;
-  const classes = `EssentialRectEditor ${className}`;
+  const classes = `EssentialRectEditor ${className || ""}`;
   const styles: CSSProperties = style || {};
 
   let cropScale = 0;

@@ -45,12 +45,12 @@ import "react-essentialrect-editor/dist/essentialrect-editor.css";
 ## Example
 
 ```js
-import { EssentialRectEditor } from "react-essentialrect/editor";
+import { useState } from "react";
+import { EssentialRectEditor } from "react-essentialrect-editor";
+import { Rect } from "react-essentialrect";
 import "react-image-crop/dist/ReactCrop.css";
 import "react-essentialrect-editor/dist/css/essentialrect-editor.css";
 
-const imageHeight = 300;
-const aspectRatio = 1.91;
 const editorSize = 300;
 
 function App(imageUrl) {
@@ -60,11 +60,6 @@ function App(imageUrl) {
     setEssentialRect(r);
   };
 
-  const imageStyles = {
-    width: `${imageHeight * aspectRatio}px`,
-    height: `${imageHeight}px`,
-  };
-
   const editorStyles = {
     width: `${editorSize}px`,
     height: `${editorSize}px`,
@@ -72,13 +67,12 @@ function App(imageUrl) {
 
   return (
     <div className="App">
-      <div className="editorWrapper" style={imageStyles}>
-        <EssentialRectEditor
-          imageUrl={imageUrl}
-          essentialRect={essentialRect}
-          onEssentialRectChange={onEssentialRectChange}
-        />
-      </div>
+      <EssentialRectEditor
+        style={editorStyles}
+        imageUrl={imageUrl}
+        essentialRect={essentialRect}
+        onEssentialRectChange={onEssentialRectChange}
+      />
     </div>
   );
 }
@@ -88,23 +82,23 @@ function App(imageUrl) {
 
 #### imageUrl (required)
 
-The url for the image.  Can be any url that `<img>` accepts.
+The url for the image. Can be any url that `<img>` accepts.
 
 #### essentialRect (optional)
 
-A Rect object that defines the essential rectangle for the image.  If not provided, it will be set to the rectangle of the entire image, or a centered rectangle that is contrained by minAspectRatio and/or maxAspectRatio.
+A Rect object that defines the essential rectangle for the image. If not provided, it will be set to the rectangle of the entire image, or a centered rectangle that is contrained by minAspectRatio and/or maxAspectRatio.
 
 #### onEssentialRectChange (optional)
 
-The parent component should maintain the update of the essentialRect in this callback.  Without this callback provided, the editor will not function.
+The parent component should maintain the update of the essentialRect in this callback. Without this callback provided, the editor will not function.
 
 #### minAspectRatio (optional)
 
-Specify that if the aspect ratio of the box the image is displayed in is above minAspectRatio, it should not be letterboxed.  This contrains the width of the essentialRect.
+Specify that if the aspect ratio of the box the image is displayed in is above minAspectRatio, it should not be letterboxed. This contrains the width of the essentialRect.
 
 #### maxAspectRatio (optional)
 
-Specify that if the aspect ratio pf the box the image is displayed in is below maxAspectRatio, it should not be letterboxed.  This contrains the height of the essentialRect.
+Specify that if the aspect ratio pf the box the image is displayed in is below maxAspectRatio, it should not be letterboxed. This contrains the height of the essentialRect.
 
 #### onImageError (optional)
 
@@ -114,3 +108,10 @@ Callback if the image fails to load
 
 Callback when the image successfully loads, passing the loaded HTMLImageElement as a parameter.
 
+#### className (optional)
+
+CSS class to add class to the EssentialRectEditor.
+
+#### style (optional)
+
+CSSProperties object to add styles to the EssentialRectEditor.

@@ -24,19 +24,10 @@ const viewStyles: CSSProperties[] = aspectRatios.map((A: number) => {
 function App() {
   const [essentialRect, setEssentialRect] = useState<Rect>({
     left: 858,
-    top: 0,
+    top: 10,
     width: 649,
-    height: 942,
+    height: 932,
   });
-
-  const onImageLoaded = (): void => {
-    console.log("onImageLoaded");
-  };
-
-  const onEssentialRectChange = (r: Rect): void => {
-    setEssentialRect(r);
-    console.log("onEssentialRectChange");
-  };
 
   return (
     <div className="App">
@@ -44,8 +35,7 @@ function App() {
         className="editor"
         imageUrl="./sax.jpg"
         essentialRect={essentialRect}
-        onEssentialRectChange={onEssentialRectChange}
-        onImageLoaded={onImageLoaded}
+        onEssentialRectChange={setEssentialRect}
       />
 
       {viewStyles.map((s: CSSProperties, i: number) => (
