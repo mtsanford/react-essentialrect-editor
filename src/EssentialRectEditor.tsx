@@ -57,7 +57,7 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
   let maxCropWidth: number | undefined;
   let maxCropHeight: number | undefined;
   const classes = `EssentialRectEditor ${className || ""}`;
-  const styles: CSSProperties = style || {};
+  const wrapperStyles: CSSProperties = style || {};
 
   // ratio of ReactCrop element size to image size
   let cropScale = 0;
@@ -135,7 +135,7 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
   );
 
   return (
-    <div className={classes} style={styles} ref={editorRef}>
+    <div className={classes} style={wrapperStyles} ref={editorRef}>
       <ReactCrop
         src={imageUrl}
         onImageLoaded={imageLoaded}
@@ -146,6 +146,8 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
         minHeight={32}
         maxWidth={maxCropWidth}
         maxHeight={maxCropHeight}
+        style={{ width: "100%"}}
+        imageStyle={{ width: "100%"}}
       />
     </div>
   );
