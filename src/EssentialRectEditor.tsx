@@ -77,7 +77,7 @@ export const EssentialRectEditor: React.FC<EssentialRectEditorProps> = ({
 
       if (maxAspectRatio) {
         maxCropHeight = Math.floor(
-          Math.min(imageRect.height, imageRect.width * maxAspectRatio) *
+          Math.min(imageRect.height, imageRect.width / maxAspectRatio) *
             cropScale
         );
       }

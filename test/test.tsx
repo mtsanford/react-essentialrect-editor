@@ -24,8 +24,8 @@ function App() {
   const [essentialRect, setEssentialRect] = useState<Rect>({
     left: 858,
     top: 10,
-    width: 649,
-    height: 932,
+    width: 449,
+    height: 632,
   });
 
   return (
@@ -35,6 +35,8 @@ function App() {
         imageUrl="./sax.jpg"
         essentialRect={essentialRect}
         onEssentialRectChange={setEssentialRect}
+        maxAspectRatio={2}
+        minAspectRatio={0.5}
       />
 
       {viewStyles.map((s: CSSProperties, i: number) => (
